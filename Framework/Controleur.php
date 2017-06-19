@@ -1,6 +1,9 @@
 <?php
-require_once 'Requete.php';
-require_once 'Vue.php';
+
+namespace App\Framework;
+
+use App\Framework\Requete;
+use App\Framework\Vue;
 /**
  * Classe abstraite Controleur
  * Fournit des services communs aux classes Controleur dérivées
@@ -54,7 +57,7 @@ abstract class Controleur {
     {
         // Détermination du nom du fichier vue à partir du nom du contrôleur actuel
         $classeControleur = get_class($this);
-        $controleur = str_replace("Controleur", "", $classeControleur);
+        $controleur = str_replace("App\Controleur\Controleur", "", $classeControleur);
 
         // Instanciation et génération de la vueF
         $vue = new Vue($this->action, $controleur);

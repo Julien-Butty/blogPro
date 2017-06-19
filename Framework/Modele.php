@@ -1,7 +1,8 @@
 <?php
 
-require_once 'Configuration.php';
+namespace App\Framework;
 
+use App\Framework\Configuration;
 /**
  * Classe abstraite Modèle.
  * Centralise les services d'accès à une base de données.

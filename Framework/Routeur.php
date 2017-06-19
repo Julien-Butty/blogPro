@@ -1,7 +1,12 @@
 <?php
-require_once 'Controleur.php';
-require_once 'Requete.php';
-require_once 'Vue.php';
+
+namespace App\Framework;
+
+use App\Framework\Controleur;
+use App\Framework\Requete;
+use App\Framework\Vue;
+
+
 /*
  * Classe de routage des requêtes entrantes.
  *
@@ -29,6 +34,7 @@ class Routeur {
             $this->gererErreur($e);
         }
     }
+
     /**
      * Instancie le contrôleur approprié en fonction de la requête reçue
      *
@@ -39,7 +45,7 @@ class Routeur {
     private function creerControleur(Requete $requete) {
         // Grâce à la redirection, toutes les URL entrantes sont du type :
         // index.php?controleur=XXX&action=YYY&id=ZZZ
-        $controleur = "Accueil";  // Contrôleur par défaut
+        $controleur = "Default";  // Contrôleur par défaut
         if ($requete->existeParametre('controleur')) {
             $controleur = $requete->getParametre('controleur');
             // Première lettre en majuscules
@@ -47,19 +53,21 @@ class Routeur {
         }
         // Création du nom du fichier du contrôleur
         // La convention de nommage des fichiers controleurs est : Controleur/Controleur<$controleur>.php
-        $classeControleur = "Controleur" . $controleur;
-        $fichierControleur = "Controleur/" . $classeControleur . ".php";
-        if (file_exists($fichierControleur)) {
+        $classeControleur = "App\Controleur\Controleur" . $controleur;
+
+
+        try {
             // Instanciation du contrôleur adapté à la requête
-            require($fichierControleur);
+
             $controleur = new $classeControleur();
             $controleur->setRequete($requete);
             return $controleur;
         }
-        else {
-            throw new Exception("Fichier '$fichierControleur' introuvable");
+        catch (\Exception $e) {
+            throw new \Exception("Controleur '$controleur' introuvable");
         }
     }
+
     /**
      * Détermine l'action à exécuter en fonction de la requête reçue
      *
@@ -73,6 +81,7 @@ class Routeur {
         }
         return $action;
     }
+
     /**
      * Gère une erreur d'exécution (exception)
      *
