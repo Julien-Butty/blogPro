@@ -12,10 +12,17 @@ use App\Framework\Vue;
  * @author Baptiste Pesquet
  */
 abstract class Controleur {
-    /** Action à réaliser */
+    /**
+     * Action à réaliser
+     * @var
+     */
     private $action;
 
-    /** Requête entrante */
+
+    /**
+     * Requête entrante
+     * @var Requete
+     */
     protected $requete;
     /**
      * Définit la requête entrante
@@ -40,7 +47,7 @@ abstract class Controleur {
         }
         else {
             $classeControleur = get_class($this);
-            throw new Exception("Action '$action' non définie dans la classe $classeControleur");
+            throw new \Exception("Action '$action' non définie dans la classe $classeControleur");
         }
     }
     /**
@@ -48,19 +55,33 @@ abstract class Controleur {
      * Oblige les classes dérivées à implémenter cette action par défaut
      */
     public abstract function index();
+
     /**
-     * Génère la vue associée au contrôleur courant
-     *
-     * @param array $donneesVue Données nécessaires pour la génération de la vue
+     * Génère la vue associée au controleur courant
+     * @param array $donneesVue
+     * @param null $action
      */
-    protected function genererVue($donneesVue = array())
+    protected function genererVue($donneesVue = array(), $action = null)
     {
+        // Utilisation de l'action actuelle par défaut
+        $actionVue = $this->action;
+        if ($action != null) {
+            // Utilisation de l'action actuelle par défaut
+            $actionVue = $action;
+        }
         // Détermination du nom du fichier vue à partir du nom du contrôleur actuel
         $classeControleur = get_class($this);
         $controleur = str_replace("App\Controleur\Controleur", "", $classeControleur);
 
         // Instanciation et génération de la vueF
-        $vue = new Vue($this->action, $controleur);
+        $vue = new Vue($actionVue, $controleur);
         $vue->generer($donneesVue);
+    }
+
+    protected function rediriger($controleur, $action = null)
+    {
+        $racineWeb = Configuration::get("racineWeb", "/");
+        // Redirection vers l'URL /racine_site/controleur/action
+        header("Location:" . $racineWeb . $controleur . "/" . $action);
     }
 }

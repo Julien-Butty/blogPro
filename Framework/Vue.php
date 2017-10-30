@@ -3,6 +3,7 @@
 namespace App\Framework;
 
 use App\Framework\Configuration;
+use App\Framework\Session;
 
 class Vue
 {
@@ -22,6 +23,7 @@ class Vue
         $this->fichier = $fichier . $action . ".php";
     }
 
+
 // Génère et affiche la vue
     public function generer($donnees)
     {
@@ -35,8 +37,10 @@ class Vue
         // Génération du gabarit commun utilisant la partie spécifique
         $vue = $this->genererFichier('Vue/gabarit.php',
             array('titre' => $this->titre, 'contenu' => $contenu,
-                'racineWeb' => $racineWeb));
+                'racineWeb' => $racineWeb,
+            ));// possible de rajouter $flash tableau flash message et flash type
         // Renvoi de la vue générée au navigateur
+
         echo $vue;
     }
 
@@ -64,6 +68,5 @@ class Vue
     {
         return htmlspecialchars($valeur, ENT_QUOTES, 'UTF-8', false);
     }
-
-
 }
+

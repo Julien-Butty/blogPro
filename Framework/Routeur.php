@@ -2,7 +2,6 @@
 
 namespace App\Framework;
 
-use App\Framework\Controleur;
 use App\Framework\Requete;
 use App\Framework\Vue;
 
@@ -17,6 +16,11 @@ use App\Framework\Vue;
  * @author Baptiste Pesquet
  */
 class Routeur {
+
+
+
+
+
     /**
      * Méthode principale appelée par le contrôleur frontal
      * Examine la requête et exécute l'action appropriée
@@ -26,8 +30,10 @@ class Routeur {
             // Fusion des paramètres GET et POST de la requête
             // Permet de gérer uniformément ces deux types de requête HTTP
             $requete = new Requete(array_merge($_GET, $_POST));
+
             $controleur = $this->creerControleur($requete);
             $action = $this->creerAction($requete);
+
             $controleur->executerAction($action);
         }
         catch (Exception $e) {
@@ -40,12 +46,12 @@ class Routeur {
      *
      * @param Requete $requete Requête reçue
      * @return Instance d'un contrôleur
-     * @throws Exception Si la création du contrôleur échoue
+     * @throws \Exception
      */
     private function creerControleur(Requete $requete) {
         // Grâce à la redirection, toutes les URL entrantes sont du type :
-        // index.php?controleur=XXX&action=YYY&id=ZZZ
-        $controleur = "Default";  // Contrôleur par défaut
+        // read.php?controleur=XXX&action=YYY&id=ZZZ
+        $controleur = "Accueil";  // Contrôleur par défaut
         if ($requete->existeParametre('controleur')) {
             $controleur = $requete->getParametre('controleur');
             // Première lettre en majuscules
@@ -54,6 +60,8 @@ class Routeur {
         // Création du nom du fichier du contrôleur
         // La convention de nommage des fichiers controleurs est : Controleur/Controleur<$controleur>.php
         $classeControleur = "App\Controleur\Controleur" . $controleur;
+
+
 
 
         try {

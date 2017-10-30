@@ -2,62 +2,136 @@
 <html lang="fr">
 <head>
     <meta charset="utf-8">
-    <base href="<?= $racineWeb ?>"
+    <base href="<?= $racineWeb ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cerulean/bootstrap.min.css">
+    <!-- Compiled and minified CSS -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="Contenu/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <link rel="stylesheet" href="Contenu/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Yellowtail" rel="stylesheet">
 
+    
 
-    <title><?= $titre ?></title>
+    <title ><?= $titre ?></title>
 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <script src="Contenu/materialize.js"></script>
+<![endif]-->
 </head>
-<body>
-
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                    aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="index.php">Blog de Julien Butty</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li class="index"><a href="index.php">Accueil</a></li>
-                <li class="post"><a href="#">Post</a></li>
-                <li class="post"><a href="#">Créer post</a></li>
-            </ul>
-        </div><!--/.nav-collapse -->
-    </div>
-</nav>
-<header>
-    <a href=""><h1 id="titreBlog"><?= $titre ?></h1></a>
-    <p></p>
-</header>
-<div id="contenu">
-    <?= $contenu ?>
-</div> <!-- #contenu -->
+<body class="grey lighten-3">
+    <div >
+        <section class="parallax-container">
+            <div class="row valign-wrapper name ">
+                <div class="s12 center row">
+                    <div>
+                        <h1><span class="white-text">Julien<span class="light-blue-text text-accent-3"> Butty</span></h1>
+                    </div>
+                    <div>
+                        <h5 class="center white-text">Parce que vous le codez bien !</h5>
+                    </div>
 
 
-<footer id="piedBlog">
 
-</footer>
 
-<!-- Bootstrap core JavaScript
+
+                    <div class="parallax">
+                        <img class="responsive-img" src="Contenu/img/desk.png">
+                    </div>
+                </section>
+
+                <nav class="nav-wrapper grey darken-4 " >
+
+
+                    <div class="container">
+                        <a class="brand-logo" href="index.php">Julien <span class="light-blue-text text-accent-3">Butty</span></a>
+
+                        <a href="#" data-activates="mobile-menu" class="button-collapse"><i class="material-icons">menu</i></a>
+
+
+                        <ul  class="right hide-on-med-and-down" >
+                            <li><a href="Accueil">Accueil</a></li>
+                            <li><a href="Billet">Post</a></li>
+                            <li><a href="billet/creer">Créer post</a></li>
+                        </ul>
+
+                        <ul id="mobile-menu" class="side-nav" >
+                            <li><a href="Accueil">Accueil</a></li>
+                            <li><a href="Billet">Post</a></li>
+                            <li><a href="billet/creer">Créer post</a></li>
+                        </ul>
+                    </div>
+
+                </nav>
+
+
+
+                <header class="container">
+                    <a href=""><h4 class="light-blue-text text-accent-3"><?= $titre ?></h4></a>
+                    <p></p>
+                </header>
+                <div id="contenu" >
+                    <?= $contenu ?>
+                </div> <!-- #contenu -->
+
+
+                <footer class="page-footer grey darken-3 ">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col l6 s12">
+                                <h5 class="white-text">Julien Butty</h5>
+                                <p class="grey-text text-lighten-4">Développeur d'application Php/Symfony</p>
+                            </div>
+                            <div class="col l4 offset-l2 s12">
+                                <h5 class="white-text s12">Liens</h5>
+                                <div class="row ">
+                                    <div class="col s4"><a href="https://github.com/Julien-Butty"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a></div>
+                                    <div class="col s4"><a href="https://twitter.com/julienbutty"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a></div>
+                                    <div class="col s4"><a href="https://fr.linkedin.com/in/julien-butty-471869a4"><i class="fa fa-linkedin fa-2x"
+                                        aria-hidden="true"></i></a></div>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-copyright grey darken-4 ">
+                        <div class="container">
+                            © 2017 Copyright Text
+                            <a href=""></a>
+                        </div>
+                    </div>
+
+
+                </footer>
+            </div>
+
+<!-- jQuery and JavaScript
     ================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+    <script>
+        jQuery(document).ready(function($) {
+            $(".button-collapse").sideNav();
+            $(".parallax").parallax();
+            $(document).ready(function(){
+    // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+    $('.modal').modal();
+});
+            
+
+        });
+    </script>
+    <script>document.write('<script src="http://' + (location.host || '${1:localhost}').split(':')[0] + ':${2:35729}/livereload.js?snipver=1"></' + 'script>')</script>
+
+
 </body>
 </html>

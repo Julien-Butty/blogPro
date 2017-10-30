@@ -2,14 +2,27 @@
 
 namespace App\Framework;
 
+/**
+ * Class Configuration
+ * @package App\Framework
+ */
 class Configuration {
-
+    /**
+     * @var
+     */
     private static $parametres;
 
     // Renvoie la valeur d'un paramètre de configuration
+
+    /**
+     * @param $nom
+     * @param null $valeurParDefaut
+     * @return null
+     */
     public static function get($nom, $valeurParDefaut = null) {
-        if (isset(self::getParametres()[$nom])) {
-            $valeur = self::getParametres()[$nom];
+        $parametre= self::getParametres();
+        if (isset($parametre[$nom])) {
+            $valeur = $parametre[$nom];
         }
         else {
             $valeur = $valeurParDefaut;
@@ -18,6 +31,11 @@ class Configuration {
     }
 
     // Renvoie le tableau des paramètres en le chargeant au besoin
+
+    /**
+     * @return array|bool
+     * @throws \Exception
+     */
     private static function getParametres() {
         if (self::$parametres == null) {
             $cheminFichier = "Config/dev.ini";
