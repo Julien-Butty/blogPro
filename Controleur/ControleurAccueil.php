@@ -19,18 +19,25 @@ class ControleurAccueil extends Controleur
     {
 
         $errors = [];
-        if (isset($_POST['envoyer'])) {
+        $input = [];
+        if ($this->requete->existeParametre('envoyer')) {
 
-            if ($this->requete->existeParametre('nom') == false) {
+            if ($this->requete->existeParametre('nom') === false) {
                 $errors['nom'] = "Vous n'avez pas renseigné votre nom";
+            } else {
+                $input['nom'] = $this->requete->getParametre('nom');
             }
 
-            if ($this->requete->existeParametre('email') == false || filter_var($this->requete->existeParametre('email'), FILTER_VALIDATE_EMAIL)) {
+            if ($this->requete->existeParametre('email') === false || filter_var($this->requete->existeParametre('email'), FILTER_VALIDATE_EMAIL)) {
                 $errors['email'] = "Vous n'avez pas renseigné un email valide";
+            }else {
+                $input['email'] = $this->requete->getParametre('email');
             }
 
-            if ($this->requete->existeParametre('message') == false) {
+            if ($this->requete->existeParametre('message') === false) {
                 $errors['message'] = "Vous n'avez pas renseigné votre message";
+            }else {
+                $input['message'] = $this->requete->getParametre('message');
             }
 //$this->requete->getSession()->getAttribut() a remplacer
             if (!empty($errors)) {
@@ -43,12 +50,12 @@ class ControleurAccueil extends Controleur
 
 
             } else {
-                $message = $_POST['message'];
+                $message = $this->requete->getParametre('message');
                 $headers = 'FROM: julienbutty@gmail.com';
 
                 mail('julienbutty@gmail.com', 'Formulaire de contact', $message, $headers);
+                $this->requete->getSession()->detruire();
                 $this->rediriger("accueil", "index");
-                //$this->requete->getSession()->detruire();
 
             }
         }

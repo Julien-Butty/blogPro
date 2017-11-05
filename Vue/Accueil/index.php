@@ -10,14 +10,19 @@
                   <img src="Contenu/img/me.jpg" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
               </div>
               <div class="col s10">
-                <span class="white-text">
+                <span class="white-text contenu">
                     Venant du graphisme et passioné par le monde digital, j'ai repris mes études il'y a un an afin de me reconvertir
                     dans le domaine du développement web. A travers ce blog je vous propose mes services mais également un moyen d'échange
-                    par le biais d'articles que vous pourrez commenter et même créer. Au plaisir de vous lire !
+                    par le biais d'articles que vous pourrez commenter et même créer. Au plaisir de vous lire !<br/>
+                    <a href="Contenu/download/jb.pdf" title="pdf">Un coup d'oeil sur mon cv ?</a>
+
                 </span>
             </div>
         </div>
     </div>
+
+
+
 </div>
 </div>
 
@@ -69,8 +74,10 @@
                     <h4>Contactez moi</h4>
                 </div>
 
+                <?= var_dump($_SESSION); ?>
+
                 <div class="row ">
-                    <form class="col offset-m3 m6 s12" action="" method="post">
+                    <form class="col offset-m3 m6 s12" method="POST">
                         <div class="row">
                             <div class="input-field col s6">
                                 <i class="material-icons prefix">account_circle</i>

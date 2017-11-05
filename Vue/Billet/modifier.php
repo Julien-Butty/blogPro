@@ -18,6 +18,6 @@
         <textarea id="modifContenu" class="form-control" name="contenu" placeholder="Votre commentaire" rows="10" required><?= $billet['contenu'] ?></textarea><br/>
     </div>
     <input type="hidden" name="id" value="<?= $billet['id'] ?>"/>
-    <input class="btn btn-primary" name="soumettre" type="submit" value="Soumettre"/>
+    <input class="btn btn-primary" name="soumettre" type="submit" value="Soumettre" onclick="if(window.confirm('Voulez-vous vraiment modifier cet article ?')){return true;}else{return false;}"/>
     </div>
 </form>
