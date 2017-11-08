@@ -7,5 +7,4 @@ require "Autoloader.php";
 
 
 Autoloader::register();
-$routeur = new Routeur("dev");
-$routeur->routerRequete();
+$routeur = new Routeur();
